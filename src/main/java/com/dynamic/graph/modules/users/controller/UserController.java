@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,9 +29,9 @@ public class UserController {
 
     @GetMapping
     @ApiOperation(value = "Get a page of user accounts..", nickname = "finAll")
-    public ResponseEntity<Page<UserDTO>> list(Pageable pageable, UserFilter userFilter)
+    public ResponseEntity<Page<UserDTO>> list(Pageable pageable, UserFilter userFilter, @RequestParam("eager") Boolean eager)
     {
-        Page<UserDTO> userDTOPage = userService.findAll(userFilter, pageable)
+        Page<UserDTO> userDTOPage = userService.findAll(userFilter, pageable, eager)
                 .map(userMapper::userToUserDTO);
 
         return new ResponseEntity<>(userDTOPage, HttpStatus.OK);

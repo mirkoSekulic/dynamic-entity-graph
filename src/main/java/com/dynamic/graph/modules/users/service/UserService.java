@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
-    Page<User> findAll(UserFilter userFilter, Pageable pageable);
+    Page<User> findAll(UserFilter userFilter, Pageable pageable, Boolean eager);
 }
