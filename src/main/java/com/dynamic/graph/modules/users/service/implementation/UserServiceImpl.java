@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAll(@NotNull UserFilter userFilter, Pageable pageable, Boolean eager) {
-        JpaEntityGraph dynamicGraph = eager ? EntityGraphUtil.getDynamicGraph(
+        JpaEntityGraph dynamicGraph = eager != null && eager ? EntityGraphUtil.getDynamicGraph(
                 "user",
                 EntityGraph.EntityGraphType.FETCH,
                 new String[]{User_.AUTHORITIES}

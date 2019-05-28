@@ -7,6 +7,8 @@ import org.mapstruct.BeforeMapping;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+
 @Mapper(componentModel = "spring")
 @Component
 public interface UserMapper {
@@ -14,7 +16,7 @@ public interface UserMapper {
     @BeforeMapping
     default void avoidLazyLoadSet(User user){
         if (!MapperUtil.wasInitialized(user.getAuthorities())) {
-            user.setAuthorities(null);
+            user.setAuthorities(new HashSet<>());
         }
     }
 

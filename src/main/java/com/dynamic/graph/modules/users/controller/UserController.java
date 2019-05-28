@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping
     @ApiOperation(value = "Get a page of user accounts..", nickname = "finAll")
-    public ResponseEntity<Page<UserDTO>> list(Pageable pageable, UserFilter userFilter, @RequestParam("eager") Boolean eager)
+    public ResponseEntity<Page<UserDTO>> list(Pageable pageable, UserFilter userFilter, @RequestParam(value = "eager", required = false) Boolean eager)
     {
         Page<UserDTO> userDTOPage = userService.findAll(userFilter, pageable, eager)
                 .map(userMapper::userToUserDTO);

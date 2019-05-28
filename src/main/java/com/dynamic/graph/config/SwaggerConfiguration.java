@@ -63,7 +63,7 @@ public class SwaggerConfiguration
 
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo)
-                .securitySchemes(Lists.newArrayList(apiKey()))
+                // .securitySchemes(Lists.newArrayList(apiKey()))
                 .directModelSubstitute(LocalTime.class, String.class)
                 .securityContexts(Collections.singletonList(securityContext()))
                 .select()

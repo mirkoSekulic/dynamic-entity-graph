@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.query.Jpa21Utils;
 import org.springframework.data.jpa.repository.query.JpaEntityGraph;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
+import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.lang.Nullable;
@@ -28,6 +29,10 @@ public class CustomSimpleRepository<T, ID extends Serializable> extends SimpleJp
     public CustomSimpleRepository(JpaEntityInformation entityInformation, EntityManager entityManager) {
         super(entityInformation, entityManager);
         this.entityManager = entityManager;
+    }
+
+    public CustomSimpleRepository(Class<T> domainClass, EntityManager em) {
+        this(JpaEntityInformationSupport.getEntityInformation(domainClass, em), em);
     }
 
     @Override
