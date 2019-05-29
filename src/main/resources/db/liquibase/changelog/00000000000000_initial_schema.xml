@@ -69,6 +69,19 @@
                                  referencedColumnNames="id"
                                  referencedTableName="user"/>
 
+        <createTable tableName="example">
+            <column name="id" type="bigint unsigned" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints unique="true" nullable="false" uniqueConstraintName="ux_user_login"/>
+            </column>
+            <column name="description" type="varchar(50)"/>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
     </changeSet>
 
 
@@ -95,6 +108,15 @@
                 file="db/liquibase/data/users_authorities.csv"
                 separator=";"
                 tableName="user_authority"/>
+    </changeSet>
+
+    <changeSet id="00000000000000_load_example_data" author="mirko" context="dev">
+        <loadData
+                file="db/liquibase/data/examples.csv"
+                separator=";"
+                tableName="example">
+            <column name="created_date" type="timestamp"/>
+        </loadData>
     </changeSet>
 
 </databaseChangeLog>
