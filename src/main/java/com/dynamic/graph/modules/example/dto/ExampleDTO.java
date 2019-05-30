@@ -1,5 +1,6 @@
 package com.dynamic.graph.modules.example.dto;
 
+import com.dynamic.graph.modules.example.domain.ExampleDetail;
 import io.swagger.annotations.ApiModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An ExampleDTO that represents Example
@@ -32,4 +35,6 @@ public class ExampleDTO implements Serializable {
 
     @Size(max = 50)
     private String description;
+
+    private Set<ExampleDetail> exampleDetails = new HashSet<>();
 }

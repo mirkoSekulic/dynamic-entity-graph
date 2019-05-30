@@ -1,12 +1,17 @@
 package com.dynamic.graph.modules.example.domain;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * An Example domain model.
@@ -33,4 +38,10 @@ public class Example implements Serializable {
 
     @Column(name = "created_date")
     private Instant createdDate;
+
+    @OneToMany
+    @JoinColumn(name="example_id")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<ExampleDetail> exampleDetails = new HashSet<>();
 }

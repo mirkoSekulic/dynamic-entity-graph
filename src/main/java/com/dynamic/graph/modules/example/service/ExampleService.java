@@ -9,11 +9,5 @@ public interface ExampleService {
 
     Page<Example> findAll(ExampleFilter exampleFilter, Pageable pageable, Boolean eager);
 
-    Example create(Example example);
-
-    Example update(Example example);
-
-    void delete(Long id);
-
     Example findById(Long id);
 }
